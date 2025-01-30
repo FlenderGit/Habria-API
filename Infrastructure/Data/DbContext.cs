@@ -36,6 +36,11 @@ public class DataContext : DbContext, IDataContext
             .HasMany(a => a.SubObservations)
             .WithOne(a => a.Observation)
             .HasForeignKey(a => a.ObservationId);
+
+        modelBuilder.Entity<TypeChapitre>()
+            .HasMany(a => a.Observations)
+            .WithOne(a => a.TypeChapitre)
+            .HasForeignKey(a => a.TypeChapitreId);
     }
 
 }

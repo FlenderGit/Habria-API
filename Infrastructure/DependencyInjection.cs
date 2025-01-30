@@ -1,8 +1,8 @@
 ﻿using Application.Common.Interfaces;
 using Application.Common.Interfaces.Repositories;
 using Application.Common.Interfaces.Services;
-using Infrastructure.Buildings;
 using Infrastructure.Data;
+using Infrastructure.Repositories;
 using Infrastructure.Services.Generation.Excel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +19,7 @@ public static class DependencyInjection
         services.AddScoped<IExcelService, ExcelReportBuildingService>();
 
         services.AddScoped<IBuildingRepository, BuildingRepository>();
+        services.AddScoped<IObservationRepository, ObservationRepository>();
 
         return services;
     }

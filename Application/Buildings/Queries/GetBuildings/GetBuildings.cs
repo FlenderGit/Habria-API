@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Application.Buildings.Queries.GetBuildings;
 
-public record GetBuildingsQuery(PaginatedQuery data): IRequest<PaginatedList<BuildingViewDTO>>;
+public record GetBuildingsQuery(PaginatedQuery data) : IRequest<PaginatedList<BuildingViewDTO>>;
 
 public class GetBuildingQueryHandler : IRequestHandler<GetBuildingsQuery, PaginatedList<BuildingViewDTO>>
 {

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Application.Observation.Queries.GetObservation;
+namespace Application.Observations.Queries.GetObservation;
 
 public class ObservationDTO
 {

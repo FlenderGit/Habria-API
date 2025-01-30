@@ -6,7 +6,7 @@ namespace Application.Buildings.Queries.GetBuildingFilters;
 
 public record GetBuildingFiltersQuery() : IRequest<List<TypeChapitreDto>>;
 
-public class GetBuildingFilters: IRequestHandler<GetBuildingFiltersQuery, List<TypeChapitreDto>>
+public class GetBuildingFilters : IRequestHandler<GetBuildingFiltersQuery, List<TypeChapitreDto>>
 
 {
     private readonly IDataContext _context;

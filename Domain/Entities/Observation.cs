@@ -45,4 +45,9 @@ public class Observation
 
     public ICollection<SubObservation> SubObservations { get; } = new List<SubObservation>();
 
+    [Column("CdChapitre")]
+    public int TypeChapitreId { get; set; }
+
+    public TypeChapitre TypeChapitre { get; set; }
+
 }

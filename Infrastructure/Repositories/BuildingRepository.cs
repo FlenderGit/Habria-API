@@ -12,7 +12,7 @@ using Infrastructure.Data;
 using LanguageExt;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Buildings;
+namespace Infrastructure.Repositories;
 public class BuildingRepository(DataContext _context, IMapper _mapper) : IBuildingRepository
 {
     public async Task<Option<BuildingReportDTO>> GetByIdAsync(int id, CancellationToken cancellationToken)

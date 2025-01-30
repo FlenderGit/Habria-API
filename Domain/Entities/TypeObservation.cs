@@ -21,7 +21,6 @@ public class TypeObservation
     [Column("CdTypeChapitre")]
     public int TypeChapitreId { get; set; }
 
-
     public TypeChapitre TypeChapitre { get; set; }
 
 

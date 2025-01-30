@@ -10,7 +10,7 @@ using LanguageExt;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Observation.Queries.GetObservation;
+namespace Application.Observations.Queries.GetObservation;
 
 public record GetObservationQuery(int id) : IRequest<Option<ObservationDTO>>;
 

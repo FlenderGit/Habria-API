@@ -15,6 +15,7 @@ public class TypeChapitre
 
     public ICollection<TypeObservation> RelatedTypeObservation { get; } = new List<TypeObservation>();
 
-    
+    public ICollection<Observation> Observations { get; } = new List<Observation>();
+
 
 }

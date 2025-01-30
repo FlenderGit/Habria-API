@@ -5,7 +5,8 @@ using Application.Buildings.Queries.GetBuilding;
 using Application.Buildings.Queries.GetBuildingFilters;
 using Application.Buildings.Queries.GetBuildings;
 using Application.Common.Models;
-using Application.Observation.Queries.GetObservation;
+using Application.Observations.Queries.GetObservation;
+using Application.Observations.Queries.GetObservations;
 using FluentValidation;
 using LanguageExt;
 using MediatR;
@@ -57,14 +58,11 @@ public class BuildingController(ISender _mediator) : ControllerBase
     }
 
     [HttpGet("{id:int}/observations")]
-    public async Task<IActionResult> GetObservationsFromBuildingQueryable([FromRoute] int id, [FromQuery] PaginatedQuery)
+    public async Task<IActionResult> GetObservationsFromBuildingQueryable([FromRoute] int id, [FromQuery] GetObservationsQueryData request)
     {
-        var command = new GetBuildingQuery(id);
-        Option<BuildingDTO> result = await _mediator.Send(command);
-        return result.Match<IActionResult>(
-            Some: value => Ok(value),
-            None: () => NotFound()
-        );
+        var command = new GetObservationsQuery(id, request);
+        PaginatedList<ObservationViewDTO> result = await _mediator.Send(command);
+        return Ok(result);
     }
 
 
