@@ -10,5 +10,5 @@ public class PaginatedQuery
 {
     public int Page { get; init; } = 1;
     public int PerPage { get; init; } = 10;
-    public string Q { get; init; } = string.Empty;
+    public string Query { get; init; } = string.Empty;
 }

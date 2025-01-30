@@ -18,9 +18,9 @@ public class GetBuildingQueryHandler : IRequestHandler<GetBuildingsQuery, Pagina
 
         IQueryable<Domain.Entities.Building> buildingQuery = _context.Buildings;
 
-        if (!string.IsNullOrWhiteSpace(request.data.Q))
+        if (!string.IsNullOrWhiteSpace(request.data.Query))
         {
-            string query = request.data.Q;
+            string query = request.data.Query;
             buildingQuery = buildingQuery.Where(x
                 => x.Name.ToLower().Contains(query)
                 || x.Id.ToString().Contains(query)

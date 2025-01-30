@@ -56,6 +56,18 @@ public class BuildingController(ISender _mediator) : ControllerBase
         );
     }
 
+    [HttpGet("{id:int}/observations")]
+    public async Task<IActionResult> GetObservationsFromBuildingQueryable([FromRoute] int id, [FromQuery] PaginatedQuery)
+    {
+        var command = new GetBuildingQuery(id);
+        Option<BuildingDTO> result = await _mediator.Send(command);
+        return result.Match<IActionResult>(
+            Some: value => Ok(value),
+            None: () => NotFound()
+        );
+    }
+
+
     [HttpGet("{id:int}/excel")]
     public async Task<IActionResult> GetExcelRecapFromBuilding([FromRoute] int id)
     {

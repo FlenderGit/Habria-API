@@ -1,14 +1,20 @@
 @AppHost_HostAddress = http://localhost:5151
 
-GET {{AppHost_HostAddress}}/api/immeuble
+GET {{AppHost_HostAddress}}/api/building?query=pa
 Accept: application/json
 
 ###
-POST {{AppHost_HostAddress}}/api/immeuble
-Content-Type: application/json
+GET {{AppHost_HostAddress}}/api/building/355
+Accept: application/json
 
-{
-    "name": "",
-    "Ville": "ExempleVilleNom"
-}
 ###
+GET {{AppHost_HostAddress}}/api/building/chapters
+Accept: application/json
+
+###
+GET {{AppHost_HostAddress}}/api/building/observation/166
+Accept: application/json
+
+###
+GET {{AppHost_HostAddress}}/api/building/355/excel
+Accept: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
