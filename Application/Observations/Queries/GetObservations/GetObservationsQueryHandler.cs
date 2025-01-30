@@ -14,15 +14,15 @@ public class GetObservationsQueryHandler(IObservationRepository _repository, IMa
 
         IQueryable<Observation> observationQuery = _repository.GetByBuildingId(request.Id);
 
-        GetObservationsQueryData data = request.Request;
+        PaginatedQuery data = request.Request;
         if (!string.IsNullOrEmpty(data.Query))
         {
             observationQuery = observationQuery.Where(v => v.Label.Contains(data.Query));
         }
 
-        if (data.Chapter != 0)
+        if (request.Chapter != 0)
         {
-            observationQuery = observationQuery.Where(v => v.TypeChapitre.Id == data.Chapter);
+            observationQuery = observationQuery.Where(v => v.TypeChapitre.Id == request.Chapter);
         }
 
         IQueryable<ObservationViewDTO> observationViewQuery = observationQuery.ProjectTo<ObservationViewDTO>(_mapper.ConfigurationProvider);

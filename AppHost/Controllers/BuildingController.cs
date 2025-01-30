@@ -58,9 +58,9 @@ public class BuildingController(ISender _mediator) : ControllerBase
     }
 
     [HttpGet("{id:int}/observations")]
-    public async Task<IActionResult> GetObservationsFromBuildingQueryable([FromRoute] int id, [FromQuery] GetObservationsQueryData request)
+    public async Task<IActionResult> GetObservationsFromBuildingQueryable([FromRoute] int id, [FromQuery] int Chapter, [FromQuery] int Type, [FromQuery] PaginatedQuery request)
     {
-        var command = new GetObservationsQuery(id, request);
+        var command = new GetObservationsQuery(id,Chapter, Type, request);
         PaginatedList<ObservationViewDTO> result = await _mediator.Send(command);
         return Ok(result);
     }

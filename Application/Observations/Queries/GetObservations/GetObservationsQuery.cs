@@ -10,4 +10,4 @@ using MediatR;
 
 namespace Application.Observations.Queries.GetObservations;
 
-public record GetObservationsQuery(int Id, GetObservationsQueryData Request): IRequest<PaginatedList<ObservationViewDTO>>;
+public record GetObservationsQuery(int Id, int Chapter, int Type, PaginatedQuery Request): IRequest<PaginatedList<ObservationViewDTO>>;
