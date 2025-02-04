@@ -1,25 +1,24 @@
-﻿using Application.Buildings.Commands.GenerateExcelBuilding;
+﻿using System.Drawing.Imaging;
+using Application.Buildings.Commands.GenerateExcelBuilding;
 using Application.Buildings.Queries.GetBuilding;
 using Application.Common.Interfaces.Services;
-using Domain.Entities;
 using NPOI.SS.UserModel;
 using NPOI.SS.UserModel.Charts;
 using NPOI.SS.Util;
 using NPOI.XSSF.UserModel;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Infrastructure.Services.Generation.Excel;
 public class ExcelReportBuildingService: IExcelService
 {
-    public byte[] GenerateExcel(BuildingReportDTO building)
+    public byte[] GenerateExcel(BuildingReportDTO building, IMapService mapService)
     {
         var workbook = new XSSFWorkbook();
         ISheet sheet = workbook.CreateSheet("jean");
 
         IRow row_main = sheet.CreateRow(0);
         row_main.CreateCell(0).String(building.Name);
-        row_main.CreateCell(1).Numeric(building.Zipcode);
-        row_main.CreateCell(3).Numeric(building.Zipcode);
+        row_main.CreateCell(1).Numeric(4);
+        row_main.CreateCell(3).Numeric(43);
 
         IDataFormat dataformat = workbook.CreateDataFormat();
         ICell cell = row_main.CreateCell(2);
@@ -45,12 +44,29 @@ public class ExcelReportBuildingService: IExcelService
         }
 
         IDrawing drawing = sheet.CreateDrawingPatriarch();
-        var anchor = new XSSFClientAnchor(0, 0, 0, 0, 2, 2, 3, 5)
+        var anchor = new XSSFClientAnchor
         {
             AnchorType = AnchorType.MoveDontResize,
+            Col1 = 10,
+            Row1 = 4,
+            Col2 = 16,
+            Row2 = 17
         };
 
-        int imageId = LoadPNGImage("wwwroot\\emustream.png", workbook);
+        // int imageId = LoadPNGImage("wwwroot\\emustream.png", workbook);
+        double lat = 49.381075;
+        double lng = 3.321258;
+        System.Drawing.Image img = mapService.GetImageAtLocation((lat, lng), new System.Drawing.Size(800, 600));
+
+        byte[] mapBytes;
+        using (var ms = new MemoryStream())
+        {
+            img.Save(ms, ImageFormat.Png);
+            mapBytes = ms.ToArray();
+        }
+
+
+        int imageId = workbook.AddPicture(mapBytes, PictureType.PNG);
         IPicture pic = drawing.CreatePicture(anchor, imageId);
 
         IDrawing drawing2 = sheet.CreateDrawingPatriarch();

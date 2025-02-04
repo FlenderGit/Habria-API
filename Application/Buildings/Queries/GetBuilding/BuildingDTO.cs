@@ -14,7 +14,12 @@ public class BuildingDTO: BuildingViewDTO
 {
     public BuildingDTO() => Observations = Array.Empty<ObservationViewDTO>();
     public IReadOnlyCollection<ObservationViewDTO> Observations { get; init; }
+    
+    public required string Address1 { get; init; }
+    public required string Address2 { get; init; }
 
+    public required string City { get; init; }
+    public required string Zipcode { get; init; }
 
     private class Mapping : Profile
     {

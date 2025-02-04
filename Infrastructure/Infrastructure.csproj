@@ -6,6 +6,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    <PackageReference Include="ProjNet" />
+    <PackageReference Include="SharpMap.Layers.BruTile" />
   </ItemGroup>
 
   <ItemGroup>

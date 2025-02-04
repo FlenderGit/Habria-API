@@ -9,5 +9,5 @@ using Domain.Entities;
 namespace Application.Common.Interfaces.Services;
 public interface IExcelService
 {
-    byte[] GenerateExcel(BuildingReportDTO building);
+    byte[] GenerateExcel(BuildingReportDTO building, IMapService mapService);
 }

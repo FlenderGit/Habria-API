@@ -12,10 +12,11 @@ using LanguageExt.Common;
 using MediatR;
 
 namespace Application.Buildings.Commands.GenerateExcelBuilding;
-public class GenerateExcelBuildingCommandHandler(IBuildingRepository repository, IExcelService excelService) : IRequestHandler<GenerateExcelBuildingCommand, Fin<byte[]>>
+public class GenerateExcelBuildingCommandHandler(IBuildingRepository repository, IExcelService excelService, IMapService mapService) : IRequestHandler<GenerateExcelBuildingCommand, Fin<byte[]>>
 {
     private readonly IBuildingRepository _repository = repository;
     private readonly IExcelService _excelService = excelService;
+    private readonly IMapService _mapService = mapService;
 
 
     public async Task<Fin<byte[]>> Handle(GenerateExcelBuildingCommand request, CancellationToken cancellationToken)
@@ -30,7 +31,7 @@ public class GenerateExcelBuildingCommandHandler(IBuildingRepository repository,
 
     private byte[] createExcelBuildingReport(BuildingReportDTO building)
     {
-        byte[] excel = _excelService.GenerateExcel(building);
+        byte[] excel = _excelService.GenerateExcel(building, _mapService);
         return excel;
     }
 

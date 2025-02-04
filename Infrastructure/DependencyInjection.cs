@@ -3,6 +3,7 @@ using Application.Common.Interfaces.Repositories;
 using Application.Common.Interfaces.Services;
 using Infrastructure.Data;
 using Infrastructure.Repositories;
+using Infrastructure.Services;
 using Infrastructure.Services.Generation.Excel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +21,9 @@ public static class DependencyInjection
 
         services.AddScoped<IBuildingRepository, BuildingRepository>();
         services.AddScoped<IObservationRepository, ObservationRepository>();
+
+
+        services.AddScoped<IMapService, MapService>();
 
         return services;
     }

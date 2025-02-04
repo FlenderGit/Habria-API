@@ -11,6 +11,5 @@ public class BuildingViewDTO
 {
     public decimal Id { get; init; }
     public required string Name { get; init; }
-    public required string Zipcode { get; init; }
-    public required string City { get; init; }
+    public required string Owner { get; init; }
 }

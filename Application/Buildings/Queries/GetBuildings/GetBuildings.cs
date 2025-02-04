@@ -32,8 +32,7 @@ public class GetBuildingQueryHandler : IRequestHandler<GetBuildingsQuery, Pagina
         {
             Id = b.Id,
             Name = b.Name,
-            Zipcode = b.Zipcode,
-            City = b.City
+            Owner = b.Owner
         });
 
         PaginatedList<BuildingViewDTO> paginated = await PaginatedList<BuildingViewDTO>.CreateAsync(buildingQueryResponse, request.data.Page, request.data.PerPage);
